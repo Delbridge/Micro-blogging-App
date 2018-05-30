@@ -30,7 +30,10 @@ GEM
     sinatra-activerecord (2.0.13)
       activerecord (>= 3.2)
       sinatra (>= 1.0)
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3cbadf03b48bd6473e42dedbcbcc4007f516a7ad
     sqlite3 (1.3.13)
     sqlite3 (1.3.13-x86-mingw32)
     thread_safe (0.3.6)
