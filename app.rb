@@ -13,3 +13,4 @@ set :database, 'sqlite3:books.sqlite3'
       User.create(username: parmas[:username], password: params[:password])
       redirect "/userprofilenew"
     end
+
