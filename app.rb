@@ -11,11 +11,18 @@ def current_user
 		@current_user = User.find(session[:user_id])
 	end
 end
+
+get "/" do  
+
+
+erb :'users/index'
+end
+
 # Login functionality
 
 get "/login" do
 
-	erb :'users/login'
+erb :'users/login'
 end
 
 post "login" do
