@@ -10,17 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_05_30_143821) do
+=======
+ActiveRecord::Schema.define(version: 2018_05_30_142003) do
+>>>>>>> 3cbadf03b48bd6473e42dedbcbcc4007f516a7ad
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.string "content"
+<<<<<<< HEAD
     t.string "user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password"
+=======
+    t.integer "user_id"
+>>>>>>> 3cbadf03b48bd6473e42dedbcbcc4007f516a7ad
   end
 
 end
