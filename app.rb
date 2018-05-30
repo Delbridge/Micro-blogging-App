@@ -76,5 +76,6 @@ end
       User.create(username: parmas[:username], password: params[:password])
       redirect "/userprofilenew"
     end
+end
 
 
