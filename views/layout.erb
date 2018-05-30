@@ -5,15 +5,17 @@
     <title></title>
   </head>
   <body>
-      <nav>
-        <li>Home</li>
-        <li>Login</li>
-        <li>Logout</li>
-        <li>My Profile</li>
-      </nav>
-      
-    <%= yield %>
+    <nav>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/index">Sign Up</a></li>
+      <li><a href="/userprofilenew">My Profile</a></li>
+          <form action="/logout" method="post">
+              <input type"submit" value="logout">
+          </form>
+    </nav>
+ 
+
+  <%= yield %>
   </body>
 </html>
-
-<!-- the pages will be "Home", "Login", "Logout", "My Profile"  -->
