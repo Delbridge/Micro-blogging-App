@@ -1,17 +1,17 @@
 require 'sinatra'
 
-require 'sinatra/activerecord' 
-require './models'   
-set :database, 'sqlite3:books.sqlite3'  
+require 'sinatra/activerecord'
+require './models'
+set :database, 'sqlite3:books.sqlite3'
 
 #  List of all blogs
-get '/' do 
+get '/' do
     @blogs = Blog.all
     erb :"blogs/index"
 end
 
     # create blogs
-    get "blogs/new" do 
+    get "blogs/new" do
         erb :"blogs/new"
     end
 
@@ -20,6 +20,8 @@ end
  Blog.create(title: params[:title], content: params[:content], user_id: current_user.id)
 set :database, 'sqlite3:books.sqlite3'
 set :sessions, true
+end
+
 
 
 def current_user
@@ -28,11 +30,24 @@ def current_user
 	end
 end
 
-get "/" do  
+get "/" do
 
 
 erb :'users/index'
 end
+
+# Signup action
+ get "/signup" do
+
+ erb :'users/userprofilenew'
+ end
+
+
+
+    post "/create" do
+      User.create(username: parmas[:username], password: params[:password])
+      redirect "/userprofilenew"
+    end
 
 # Login functionality
 
@@ -41,19 +56,21 @@ get "/login" do
 erb :'users/login'
 end
 
-post "login" do
+post "/login" do
 	user = User.where(username: params[:username]).first
 	if user.password == params[:password]
-		session[:user_id] = user.user_id
-		redirect "/userprofilenew"
+		session[:user_id] = user_id
+		redirect "/"
 	else
 		redirect "/login"
 	end
 end
 
-get "signup/userprofilenew" do
+# Create New Profile
 
-	erb :'userprofilenew'
+get "/signup/userprofilenew" do
+
+	erb :'users/userprofilenew'
 
 end
 
@@ -64,18 +81,15 @@ post "/create_newprofile" do
 	else
 		current_user = User.find(session[:user_id])
 		User.create(location: params[:location], hobby: params[:hobby], user_id: current_user.id)
-		redirect "/userprofilenew"
+		redirect "/signup/userprofilenew"
 	end
 end
-# Signup action
- get "/signup" do
-   erb :"users/new"
- end
 
     post "/create" do
       User.create(username: parmas[:username], password: params[:password])
       redirect "/userprofilenew"
     end
 end
+
 
 
