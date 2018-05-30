@@ -20,6 +20,8 @@ end
  Blog.create(title: params[:title], content: params[:content], user_id: current_user.id)
 set :database, 'sqlite3:books.sqlite3'
 set :sessions, true
+end
+
 
 
 def current_user
@@ -34,6 +36,19 @@ get "/" do
 erb :'users/index'
 end
 
+# Signup action
+ get "/signup" do
+
+ erb :'users/userprofilenew'
+ end
+
+
+
+    post "/create" do
+      User.create(username: parmas[:username], password: params[:password])
+      redirect "/userprofilenew"
+    end
+
 # Login functionality
 
 get "/login" do
@@ -41,25 +56,21 @@ get "/login" do
 erb :'users/login'
 end
 
-post "login" do
+post "/login" do
 	user = User.where(username: params[:username]).first
 	if user.password == params[:password]
-		session[:user_id] = user.id
-		redirect "/userprofilenew"
+		session[:user_id] = user_id
+		redirect "/"
 	else
 		redirect "/login"
 	end
 end
 
-# logout
-post "/logout" do
-  session[:user_id] = nil
-  redirect "/users/index"
-end
+# Create New Profile
 
-get "signup/userprofilenew" do
+get "/signup/userprofilenew" do
 
-	erb :'userprofilenew'
+	erb :'users/userprofilenew'
 
 end
 
@@ -70,16 +81,13 @@ post "/create_newprofile" do
 	else
 		current_user = User.find(session[:user_id])
 		User.create(location: params[:location], hobby: params[:hobby], user_id: current_user.id)
-		redirect "/userprofilenew"
+		redirect "/signup/userprofilenew"
 	end
 end
-# Signup action
- get "/signup" do
-   erb :"users/new"
- end
 
-    post "/create" do
-      User.create(username: parmas[:username], password: params[:password])
-      redirect "/userprofilenew"
-    end
-end
+
+
+
+
+
+
