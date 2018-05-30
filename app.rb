@@ -85,9 +85,11 @@ post "/create_newprofile" do
 	end
 end
 
-
-
-
+    post "/create" do
+      User.create(username: parmas[:username], password: params[:password])
+      redirect "/userprofilenew"
+    end
+end
 
 
 
