@@ -1,6 +1,6 @@
 <h2> List of all blogs</h2>
-@blogs.each do |b| %>
-    <%div><% =b.title%></div>
-    <%div><% =b.content%></div>
-    <%div><% =b.user_id%></div>
+<% @blogs.each do |b| %>
+    <div><%= b.title%></div>
+    <div><%= b.content%></div>
+    <div><%= b.user_id%></div>
 <%end%>
