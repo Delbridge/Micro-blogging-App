@@ -1,17 +1,17 @@
 require 'sinatra'
 
-require 'sinatra/activerecord' 
-require './models'   
-set :database, 'sqlite3:books.sqlite3'  
+require 'sinatra/activerecord'
+require './models'
+set :database, 'sqlite3:books.sqlite3'
 
 #  List of all blogs
-get '/' do 
+get '/' do
     @blogs = Blog.all
     erb :"blogs/index"
 end
 
     # create blogs
-    get "blogs/new" do 
+    get "blogs/new" do
         erb :"blogs/new"
     end
 
@@ -28,7 +28,7 @@ def current_user
 	end
 end
 
-get "/" do  
+get "/" do
 
 
 erb :'users/index'
@@ -44,11 +44,17 @@ end
 post "login" do
 	user = User.where(username: params[:username]).first
 	if user.password == params[:password]
-		session[:user_id] = user.user_id
+		session[:user_id] = user.id
 		redirect "/userprofilenew"
 	else
 		redirect "/login"
 	end
+end
+
+# logout
+post "/logout" do
+  session[:user_id] = nil
+  redirect "/users/index"
 end
 
 get "signup/userprofilenew" do
@@ -76,5 +82,4 @@ end
       User.create(username: parmas[:username], password: params[:password])
       redirect "/userprofilenew"
     end
-
-
+end
