@@ -4,6 +4,6 @@ class CreateBlogsTable < ActiveRecord::Migration[5.2]
   		t.string :title
   		t.string :content
   		t.integer :user_id
+    end
   end
-end
 end
