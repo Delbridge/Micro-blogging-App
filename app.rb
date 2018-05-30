@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord' 
 require './models'   
-<<<<<<< HEAD
 set :database, 'sqlite3:books.sqlite3'
 set :sessions, true
 
@@ -64,17 +63,3 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-=======
-set :database, 'sqlite3:books.sqlite3'  
->>>>>>> 3cbadf03b48bd6473e42dedbcbcc4007f516a7ad
