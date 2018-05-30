@@ -58,21 +58,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Signup action
  get "/signup" do
    erb :"users/new"
