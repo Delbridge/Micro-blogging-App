@@ -5,7 +5,7 @@ require './models'
 set :database, 'sqlite3:books.sqlite3'
 
 #  List of all blogs
-get '/' do
+get '/blogs' do
     @blogs = Blog.all
     erb :"blogs/index"
 end
@@ -32,7 +32,7 @@ end
 
 get "/" do
 
-
+@users = User.all
 erb :'users/index'
 end
 
@@ -45,7 +45,7 @@ end
 
 
     post "/create" do
-      User.create(username: parmas[:username], password: params[:password])
+      User.create(username: params[:username], password: params[:password])
       redirect "/userprofilenew"
     end
 
@@ -57,12 +57,12 @@ erb :'users/login'
 end
 
 post "/login" do
-	user = User.where(username: params[:username]).first
+	@user = User.where(username: params[:username]).first
 	if user.password == params[:password]
-		session[:user_id] = user_id
+		session[:user_id] = user.id
 		redirect "/"
 	else
-		redirect "/login"
+		redirect "/userprofilenew"
 	end
 end
 
@@ -86,10 +86,18 @@ post "/create_newprofile" do
 end
 
     post "/create" do
-      User.create(username: parmas[:username], password: params[:password])
+      User.create(username: params[:username], password: params[:password])
       redirect "/userprofilenew"
     end
+
+get "/profile" do
+
+
+erb :'users/profile'
 end
+
+
+
 
 
 

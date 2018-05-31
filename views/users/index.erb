@@ -1,2 +1,6 @@
-<h2> Sign Up </h2>
+<h2> Home </h2>
 
+<% @users.each do |u| %>
+<div><a href ='/index/<%= t.id %>'><%= t.username %></a>
+</div>
+<% end %>
